@@ -1,0 +1,275 @@
+const readline = require("readline");
+
+// Create input/output interface
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Display menu and handle input
+rl.question("Digite o numero do exercicio que gostaria de testar :\n", async function(choice) {//tive q botar o async por causa do exercicio 13, nao entendo bem pq
+  switch (choice) {
+    case "1":
+      rl.question("Qul numero?: ", function(input) {
+        const num = Number(input);
+
+        if (!Number.isInteger(num)) {
+          console.log("Nao é inteiro");
+        } else if ((num & 1) === 0) {
+          console.log("Par");
+        } else {
+          console.log("Impar");
+        }
+        rl.close();
+      });
+      break;
+
+    case "2":
+      rl.question("Idade? ", function(input) {
+        const age = Number(input);
+
+        if (isNaN(age)) {
+          console.log("Invalido!");
+        } else if (age < 13) {
+          console.log("criança");
+        } else if(age >=13 && age < 18){
+          console.log("adolescent");
+        } else if(age >=18 && age < 60){
+          console.log("Adulto");
+        }else{
+          console.log("Idoso");
+        }
+        rl.close();
+      });
+      break;
+
+    case "3":
+      rl.question("Nota de 1 a 10: ", function(input){
+        const grade = Number(input);
+
+        if (isNaN(grade)){
+          console.log("Invalido");
+        } else if(grade < 5){
+          console.log("Reprovado!")
+        } else if( grade < 7){
+          console.log("Recuperaçao!")
+        } else if(grade <=10 ) {
+          console.log("Aprovado!")
+        } else {
+          console.log("Invalido");
+        }
+        rl.close();
+      });
+      break;
+
+    case "4":
+      console.log("Esse seletor é o exercicio 4...meta eu sei")
+      rl.close();
+      break;
+
+    case "5": //nao faço ideia pq aki usa '' em vez de "" mas se funciona funciona
+      rl.question('Peso em kilogramas: ', (weightInput) => {
+        rl.question('Altura em metros: ', (heightInput) => {
+          const weight = parseFloat(weightInput);
+          const height = parseFloat(heightInput);
+
+          if (isNaN(weight) || isNaN(height) || height <= 0) {
+            console.log('Invalido.');
+          } else {
+            let bmi = weight / (height * height);
+            console.log(`BMI ${bmi.toFixed(2)} `);
+            if(bmi <= 18.5){
+              console.log('Abaixo do peso');
+            } else if (bmi <= 24.9){
+              console.log('Faixa ideal');
+            } else if(bmi <= 29.9){
+              console.log('Sobrepeso');
+            }else if(bmi <= 34.9){
+              console.log('Obesidade grau I');
+            }else if(bmi <= 39.9){
+              console.log('Obesidade grau II');
+            }else if(bmi >= 40){
+              console.log('Obesidade grau III');
+            }
+          }
+            rl.close();
+        });
+      });
+      break;
+
+    case "6": //nao entendi como eu testaria isNaN nesse caso
+      rl.question('Lado A : ', (Ainput) => {
+        rl.question('Lado B : ', (Binput) => {
+          rl.question('Lado C : ', (Cinput) => {
+            const A = parseFloat(Ainput);
+            const B = parseFloat(Binput);
+            const C = parseFloat(Cinput);
+
+            if(A > B + C || B > A + C || C > A + B){ // inverti de A < B + C e B < A + C e C < A + B para testar negativo
+              console.log("Nao forma triangulo");
+              rl.close();
+            } else if(A == B && B == C){
+              console.log("Equilatero");
+              rl.close();
+            }else if (A == B || A == C || B == C){
+              console.log("Isosceles");
+              rl.close();
+            }else if (A != B && A != C && B != C){
+                console.log("Escaleno");
+                rl.close();
+            }
+          })
+        })
+      })
+      break;
+
+    case "7":
+      rl.question("Quantas maças deseja comprar? ", function(input){
+        const maças = Number(input);
+        if(isNaN(maças)){
+          console.log("Nao vendemos maças cortadas, so inteiras");
+          rl.close();
+        } else if(maças < 12){
+          console.log('Valor = ' + (maças * 0.3));
+          rl.close();
+        } else if(maças >= 12){
+          console.log('Valor = ' + (maças * 0.25));
+          rl.close();
+        }
+      })
+      break;
+
+    case "8"://nao entendi pq aki so funciona como (first input), nos outros era function(input) e tbm nao sei como usar isNaN nesse caso
+      rl.question('Primeiro valor: ', (firstInput) =>{
+        rl.question('Segundo valor: ', (secondInput) =>{
+          const primeiro = Number(firstInput);
+          const segundo = Number(secondInput);
+
+          if(primeiro < segundo){
+            console.log(primeiro, segundo);
+            rl.close();
+          }else{
+            console.log(segundo, primeiro);
+            rl.close();
+          }
+        })
+
+      })
+
+    break;
+
+    case "9":
+      for(var i = 0; i < 10; i++){
+        console.log(i);
+        rl.close();
+      }
+    break;
+
+    case "10"://so esqueci de bota o isNaN, lembrar de por dps
+      rl.question("valor a ser repetido 10 vezes", function(input){
+        const x = Number(input)
+        for(var i = 0; i< 10; i++){
+          console.log(x);
+          rl.close;
+        }
+      })
+    break;
+
+    case "11": //tentei fazer bonito mas nao deu, rl.question ser asincrono me complica, mas acho q da pra ver oq tentei fazer
+      /*let sum = 0;
+
+      for(var i = 0; i < 5; i++){
+        rl.question(`digite o valor ${i + 1} : `, (input) =>{
+          const num = Number(input);
+          sum += num;
+          //rl.close();
+        })
+      }
+      console.log("soma = ", sum);
+        rl.close();
+
+    break;*/
+    rl.question('Valor 1 : ',(inputUm) => {
+      rl.question('Valor 2 : ', (inputDois) =>{
+        rl.question('Valor 3 : ',(inputTres) =>{
+          rl.question('Valor 4 : ',(inputQuatro) =>{
+            rl.question('Valor 5 : ',(inputCinco) => {
+              const ar = [];
+              ar[0] = Number(inputUm);
+              ar[1] = Number(inputDois);
+              ar[2] = Number(inputTres);
+              ar[3] = Number(inputQuatro);
+              ar[4] = Number(inputCinco);
+              ar[5] = 0;
+              for(var i = 0; i<5; i++){
+                ar[5] += ar[i];
+                console.log(ar[5]);
+                rl.close();
+              }
+            })
+          })
+        })
+      })
+    })
+    
+    break;
+
+    case "12":
+      rl.question("Numero que deseja a taboada de 1 a 10 : ", function(input){
+        const tabuando = Number(input)
+        for(var i = 0; i < 10; i++){
+          console.log(tabuando * (i+1));
+          rl.close();
+        }
+      })
+    break;
+
+    case "13"://testar mais , mais tarde
+      var count = 0;
+      var total = 0;
+      while(true){
+        const input = await new Promise(resolve => rl.question("Digite valor, ou 0 para terminar: ", resolve));{//nao entendo esse await e new promise
+          let num = parseFloat(input);
+          if(num === 0){
+            console.log("Media : " + total/count);
+            rl.close();
+            break;
+          }
+          total += num;
+          count++;
+        }
+      }
+    break;
+
+    case "14" : //nao pode fazer (n * (n-1)/2) pra usar for/while
+      rl.question("Valor que deseja saber o fatorial : ", function(input){
+        let num = Number(input);
+        let result = 1;
+        for(var i = num; i > 1; i--){
+          num *= i;
+        }
+        console.log(num);
+        rl.close();
+      })
+    break;
+
+    case "15":
+      let newFibonacci = 1;
+      let oldFibonacci = 0;
+      let aux;
+      for(var i = 1; i < 10; i++){
+        aux = newFibonacci;
+        newFibonacci += oldFibonacci;
+        oldFibonacci = aux;
+        console.log(newFibonacci);
+        rl.close();
+      }
+    break;
+
+
+    default:
+      console.log("Invalid choice");
+      rl.close();
+      break;
+  }
+});

@@ -1,0 +1,1 @@
+exercicios curso fullstack +pra ti 2025
