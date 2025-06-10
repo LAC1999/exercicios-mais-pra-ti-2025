@@ -7,3 +7,4 @@ s1e1: edite a linha 17, substituindo os 1s, em odem represantam dia, mes e ano
 s1e2: apenas rode o codigo
 s1e3: edite na linha 2 o conteudo de frase
 s2e1: edite o valor na linha 12
+s2e2: edite o valor 1000 na linha 17 para alterar o tempo em ms do delay necessario
